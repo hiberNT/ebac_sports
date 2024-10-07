@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import Header from './components/Header'
 import Produtos from './containers/Produtos'
 
 import { GlobalStyle } from './styles'
 
 import { store } from './store'
+import { RootState } from './store'
+
+import favoritos from './store/reducers/favoritos'
 
 export type Produto = {
   filter(arg0: (p: any) => boolean): unknown
@@ -16,14 +19,25 @@ export type Produto = {
 }
 
 function App() {
-  const [produtos, setProdutos] = useState<Produto[]>([])
+
+  const favoritos = useSelector((state: RootState) => state.favorito.itens);
+  //const [favoritos, setFavoritos] = useState<Produto[]>([])
+
+  /*function favoritar(produto: Produto) {
+    if (favoritos.find((p) => p.id === produto.id)) {
+      const favoritosSemProduto = favoritos.filter((p) => p.id !== produto.id)
+      setFavoritos(favoritosSemProduto)
+    } else {
+      setFavoritos([...favoritos, produto])
+    }
+  }*/
 
   return (
     <Provider store={store}>
       <GlobalStyle />
       <div className="container">
         <Header />
-        <Produtos />
+        <Produtos favoritos={favoritos} favoritar={favoritar} />
       </div>
     </Provider>
   )

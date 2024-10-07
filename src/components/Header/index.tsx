@@ -7,11 +7,11 @@ import { Produto } from '../../App'
 import cesta from '../../assets/cesta.png'
 import { paraReal } from '../Produto'
 
-import { RootReducer } from '../../store'
+import { RootState } from '../../store'
 
 const Header = () => {
-  const itens = useSelector((state: RootReducer) => state.carrinho.itens)
-  const favoritos = useSelector((state: RootReducer) => state.favorito.itens)
+  const itens = useSelector((state: RootState) => state.carrinho.itens)
+  const favoritos = useSelector((state: RootState) => state.favorito.itens)
 
   const valorTotal = itens.reduce((acc, item) => {
     acc += item.preco
