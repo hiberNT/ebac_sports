@@ -19,18 +19,16 @@ export type Produto = {
 }
 
 function App() {
+  const [favoritos, setFavoritos] = useState<Produto[]>([])
 
-  const favoritos = useSelector((state: RootState) => state.favorito.itens);
-  //const [favoritos, setFavoritos] = useState<Produto[]>([])
-
-  /*function favoritar(produto: Produto) {
+  function favoritar(produto: Produto) {
     if (favoritos.find((p) => p.id === produto.id)) {
       const favoritosSemProduto = favoritos.filter((p) => p.id !== produto.id)
       setFavoritos(favoritosSemProduto)
     } else {
       setFavoritos([...favoritos, produto])
     }
-  }*/
+  }
 
   return (
     <Provider store={store}>
